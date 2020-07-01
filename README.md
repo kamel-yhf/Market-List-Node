@@ -1,10 +1,10 @@
 # Quick start
 
-## Install dependencies
-### npm install
+### Install dependencies
+#### npm install
 
-## Start Express Server
-### npm start
+### Start Express Server
+#### npm start
 
 # Description
 Stage project: créer des listes de course en temps réel.
