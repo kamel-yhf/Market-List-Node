@@ -1,8 +1,11 @@
 # Quick start
 
 `#Install dependencies
+
 npm install`
+
 `#Start Node Server
+
 npm start`
 
 # Description
