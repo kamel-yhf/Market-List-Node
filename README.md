@@ -2,7 +2,7 @@
 
 ### Install dependencies
 #### npm install
-### Start Express Server
+### Start Node Server
 #### npm start
 
 # Description
@@ -14,8 +14,8 @@ Stage project: créer des listes de course en temps réel.
 * Vue Native, 
 * MongoDB
 
-# Dépendance
-* Express, 
+# Dépendances
+* Express, `npm i express`
 * Body-Parser, 
 * Cors, 
 * Axios,
