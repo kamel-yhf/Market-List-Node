@@ -3,8 +3,11 @@
 Install dependencies:
   `npm install`
 
-Start Node Server: 
+Start Node Server: http://localhost:5000
   `npm start`
+  
+ Start Nodemon:
+  `npm run dev`
 
 # Description
 Stage project: créer des listes de course en temps réel.
