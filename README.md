@@ -6,3 +6,9 @@ VueJs, NodeJs, Vue Native, MongoDB
 
 # Dépendance
 Express, Body-Parser, Cors, Axios, Nodemon, MongoDB
+
+# Install dependencies
+npm install
+
+# Start Express Server
+npm start
