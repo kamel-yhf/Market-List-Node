@@ -1,10 +1,15 @@
 # Quick start
 
+```
 Install dependencies:
-  `npm install`
+  npm install
 
-Start Node Server: 
-  `npm start`
+Start Node Server: http://localhost:5000
+  npm start
+  
+ Start with Nodemon:
+  npm run dev
+  ```
 
 # Description
 Stage project: créer des listes de course en temps réel.
