@@ -7,7 +7,7 @@ Install dependencies:
 Start Node Server: http://localhost:5000
   npm start
   
- Start Nodemon:
+ Start with Nodemon:
   npm run dev
   ```
 
