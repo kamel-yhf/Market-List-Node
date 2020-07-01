@@ -1,6 +1,7 @@
 # Quick start
 
-```Install dependencies:
+```
+Install dependencies:
   npm install
 
 Start Node Server: http://localhost:5000
