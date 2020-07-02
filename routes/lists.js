@@ -7,20 +7,25 @@ const uri = 'mongodb+srv://Kamel:679344856@cluster0-boqd6.mongodb.net/marketdb?r
 //getList
 router.get('/', async (req, res) => {
     const lists = await loadLists();
-    res.send(await lists.find({}).toArray());
+    res.status(200).send(await lists.find({}).toArray());
 });
 
 //addList
 router.post('/', async (req, res) => {
     const lists = await loadLists();
     await lists.insertOne({
-        champ: req.body.champ,
+        produit: req.body.produit,
         createAt: new Date()
     });
-    res.status(201).send();
+    res.send();
 });
 
 //deleteList
+router.delete('/:id', async (req, res) => {
+    const lists = await loadLists();
+    lists.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
+    res.status(200).send({});
+});
 
 async function loadLists(){
     const client = await mongodb.MongoClient.connect(
