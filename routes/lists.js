@@ -9,8 +9,16 @@ router.get('/', async (req, res) => {
     const lists = await loadLists();
     res.send(await lists.find({}).toArray());
 });
-//addList
 
+//addList
+router.post('/', async (req, res) => {
+    const lists = await loadLists();
+    await lists.insertOne({
+        champ: req.body.champ,
+        createAt: new Date()
+    });
+    res.status(201).send();
+});
 
 //deleteList
 
