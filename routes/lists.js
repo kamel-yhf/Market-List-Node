@@ -27,6 +27,7 @@ router.delete('/:id', async (req, res) => {
     res.status(200).send({});
 });
 
+//connection
 async function loadLists(){
     const client = await mongodb.MongoClient.connect(
         uri,{useNewUrlParser: true});
