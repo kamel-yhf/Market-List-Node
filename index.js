@@ -9,6 +9,8 @@ app.use(cors());
 
 const lists = require("./routes/lists");
 app.use('/lists', lists);
+const markets = require("./routes/markets");
+app.use('/markets', markets);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {console.log(`server OK ${port}`)});
