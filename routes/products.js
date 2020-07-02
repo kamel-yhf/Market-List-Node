@@ -6,13 +6,13 @@ const uri = 'mongodb+srv://Kamel:679344856@cluster0-boqd6.mongodb.net/marketdb?r
 
 //getList
 router.get('/', async (req, res) => {
-    const products = await loadproducts();
+    const products = await loadProducts();
     res.status(200).send(await products.find({}).toArray());
 });
 
 //addList
 router.post('/', async (req, res) => {
-    const products = await loadproducts();
+    const products = await loadProducts();
     await products.insertOne({
         productName: req.body.productName,
         priceProduct: req.body.priceProduct
@@ -22,12 +22,12 @@ router.post('/', async (req, res) => {
 
 //deleteList
 router.delete('/:id', async (req, res) => {
-    const products = await loadproducts();
+    const products = await loadProducts();
     products.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
     res.status(200).send({});
 });
 
-async function loadproducts(){
+async function loadProducts(){
     const client = await mongodb.MongoClient.connect(
         uri,{useNewUrlParser: true});
     return client.db('marketdb').collection('products');
