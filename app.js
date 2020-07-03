@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const listRoutes = require('./routes/Lists');
 const userRoutes = require('./routes/Users');
+const productRoutes = require('./routes/Products');
 
 const app = express();
 
@@ -23,8 +24,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
+// Les routes
 app.use('/lists', listRoutes);
 app.use('/users', userRoutes);
+app.use('/products', productRoutes);
 
 // Export de l'application
 module.exports = app;
