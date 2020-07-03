@@ -29,7 +29,7 @@ Stage project: créer des listes de course en temps réel.
 - Cors `npm i cors`
 - Axios `npm i axios`
 - Nodemon `npm i nnodemon`
-- MongoDB `npm i mongodb`
+- Mongoose `npm i mongoose`
 
 # Author
 
