@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/list', listRoutes)
+app.use('/lists', listRoutes)
 
 // Export de l'application
 module.exports = app;

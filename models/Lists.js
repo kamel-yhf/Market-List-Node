@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ListsShema = mongoose.Schema({
-    text: {type: String, required: true},
+    product: {type: String, required: true},
     createdAt: { type: Date, default: Date.now }
 });
 
