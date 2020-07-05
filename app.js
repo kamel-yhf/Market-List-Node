@@ -6,6 +6,7 @@ const listRoutes = require('./routes/Lists');
 const userRoutes = require('./routes/Users');
 const productRoutes = require('./routes/Products');
 const marketRoutes = require('./routes/Markets');
+const priceRoutes = require('./routes/Prices');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/lists', listRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/markets', marketRoutes);
+app.use('/prices', priceRoutes);
 
 // Export de l'application
 module.exports = app;

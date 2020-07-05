@@ -1,5 +1,4 @@
 const Markets = require("../models/Markets");
-const e = require("express");
 
 //Create markets
 exports.createMarket = (req, res) => {
