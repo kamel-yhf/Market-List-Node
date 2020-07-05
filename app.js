@@ -5,6 +5,7 @@ const cors = require('cors');
 const listRoutes = require('./routes/Lists');
 const userRoutes = require('./routes/Users');
 const productRoutes = require('./routes/Products');
+const marketRoutes = require('./routes/Markets');
 
 const app = express();
 
@@ -15,6 +16,7 @@ mongoose.connect('mongodb+srv://Kamel:679344856@cluster0-boqd6.mongodb.net/marke
 }).then(() => console.log('Connexion à mongo réussie'))
 .catch(err => {console.log(err);
 });
+
 mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser.urlencoded({
@@ -28,6 +30,7 @@ app.use(cors());
 app.use('/lists', listRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
+app.use('/markets', marketRoutes);
 
 // Export de l'application
 module.exports = app;

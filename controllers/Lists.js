@@ -45,7 +45,7 @@ exports.updateList = (req, res) => {
   List.findByIdAndUpdate(req.params.id, { ...req.body })
     .then(() => {
       res.status(201).json({
-        message: "modifier !"
+        message: "modifié !",
       });
     })
     .catch((error) => {
