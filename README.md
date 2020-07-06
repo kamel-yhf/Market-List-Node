@@ -31,6 +31,7 @@ Stage project: créer des listes de course en temps réel.
 - Nodemon `npm i nnodemon`
 - Mongoose `npm i mongoose`
 - Bcrypt `npm i bcrypt`
+- node-geocoder `npm i geocoder`
 
 # Author
 

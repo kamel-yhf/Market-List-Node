@@ -1,21 +1,44 @@
 const Markets = require("../models/Markets");
+const NodeGeocoder = require("node-geocoder");
 
 //Create markets
 exports.createMarket = (req, res) => {
   const marketBody = req.body;
-  const market = new Markets({
-    ...marketBody,
-  });
-  market
-    .save()
-    .then(() => {
-      res.status(201).json({
-        message: "enregistré",
+  (async () => {
+    try {
+      let address = marketBody.address;
+
+      const options = {
+        provider: "opendatafrance",
+      };
+
+      const geocoder = NodeGeocoder(options);
+
+      const resAdd = await geocoder.geocode(address);
+
+      console.log(resAdd);
+
+      const market = new Markets({
+        marketName: marketBody.marketName,
+        address: marketBody.address,
+        latitude: resAdd[0].latitude,
+        longitude: resAdd[0].longitude,
       });
-    })
-    .catch((error) => {
-      res.status(400).json(error);
-    });
+
+      market
+        .save()
+        .then(() => {
+          res.status(201).json({
+            message: "enregistré",
+          });
+        })
+        .catch((error) => {
+          res.status(400).json(error);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  })();
 };
 
 //Get markets
