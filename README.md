@@ -30,6 +30,7 @@ Stage project: créer des listes de course en temps réel.
 - Axios `npm i axios`
 - Nodemon `npm i nnodemon`
 - Mongoose `npm i mongoose`
+- Bcrypt `npm i bcrypt`
 
 # Author
 
