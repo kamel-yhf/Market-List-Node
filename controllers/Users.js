@@ -3,37 +3,23 @@ const bcrypt = require("bcrypt");
 
 //Create users
 exports.createUsers = (req, res) => {
-  const userBody = req.body;
-  (async () => {
-    try {
-      let password = userBody.password;
-
-      let salt = await bcrypt.genSalt(10);
-      let hash = await bcrypt.hash(password, salt);
-
-      const user = new Users({
-        userName: userBody.userName,
-        age: userBody.age,
-        email: userBody.email,
-        password: hash,
-        phone: userBody.phone,
-        address: userBody.address,
-      });
-
-      user
-        .save()
-        .then(() => {
-          res.status(201).json({
-            message: "enregistré",
-          });
-        })
-        .catch((error) => {
-          res.status(400).json(error);
-        });
-    } catch (error) {
-      console.log(error.message);
-    }
-  })();
+  const hash = hashPassword(req.body.password);
+  const user = new Users({
+    userName: req.body.userName,
+    age: req.body.age,
+    email: req.body.email,
+    password: hash,
+    phone: req.body.phone,
+    address: req.body.address,
+  });
+  user
+    .save()
+    .then(() => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 };
 
 //Get users
@@ -60,7 +46,19 @@ exports.getUserById = (req, res) => {
 
 //Update users
 exports.updateUser = (req, res) => {
-  Users.findByIdAndUpdate(req.params.id, { ...req.body })
+  const hash = hashPassword(req.body.password);
+  // console.log(hash);
+  // console.log(req.params.id);
+  Users.findByIdAndUpdate(req.params.id, {
+    userName: req.body.userName,
+    age: req.body.age,
+    email: req.body.email,
+    password: bcrypt.compare(req.body.password, hash)
+      ? hash
+      : req.body.password,
+    phone: req.body.phone,
+    address: req.body.address,
+  })
     .then((user) => {
       res.status(200).json(user);
     })
@@ -78,6 +76,25 @@ exports.deleteUser = (req, res) => {
       });
     })
     .catch((error) => {
-      res.status(400).json(err);
+      res.status(400).json(error);
     });
 };
+
+//Login
+exports.login = (req, res) => {
+  Users.findOne({ email: req.body.email })
+    .then((user) => {
+      bcrypt.compare(req.body.password, user.password).then((result) => {
+          return result ? res.status(200).json(user) : res.status(400).json({ message: "Le mot de passe ne corresponds pas" });
+        })
+    }).catch(() => {
+      return res.status(400).json({ message: "L'utilisateur n'existe pas" });
+    });
+};
+
+function hashPassword(password) {
+  const salt = 10;
+  const hash = bcrypt.hashSync(password, salt);
+
+  return hash;
+}
