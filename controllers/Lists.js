@@ -6,16 +6,16 @@ exports.createList = (req, res) => {
   const list = new List({
     ...listBody,
   });
-  list.save().then(() => {
-    res
-      .status(201)
-      .json({
+  list
+    .save()
+    .then(() => {
+      res.status(201).json({
         message: "list enregistré",
-      })
-      .catch((error) => {
-        res.status(400).json(error);
       });
-  });
+    })
+    .catch((error) => {
+      res.status(400).json(error);
+    });
 };
 
 //Get lists
