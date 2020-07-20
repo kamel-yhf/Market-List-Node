@@ -6,16 +6,16 @@ exports.createProducts = (req, res) => {
   const product = new Products({
     ...productBody,
   });
-  product.save().then(() => {
-    res
-      .status(201)
-      .json({
+  product
+    .save()
+    .then(() => {
+      res.status(201).json({
         message: "enregistré",
-      })
-      .catch((error) => {
-        res.status(400).json(error);
       });
-  });
+    })
+    .catch((error) => {
+      res.status(400).json(error);
+    });
 };
 
 //Get products

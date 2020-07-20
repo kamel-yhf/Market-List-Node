@@ -14,7 +14,7 @@ exports.createList = (req, res) => {
       });
     })
     .catch((error) => {
-      res.status(400).json(error);
+      res.send(error);
     });
 };
 
