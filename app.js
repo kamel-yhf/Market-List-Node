@@ -13,7 +13,7 @@ const app = express();
 // Connexion a la base de donnée MongoDB
 mongoose
   .connect(
-    "mongodb+srv://Kamel:679344856@cluster0-boqd6.mongodb.net/marketdb?retryWrites=true&w=majority",
+    "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
