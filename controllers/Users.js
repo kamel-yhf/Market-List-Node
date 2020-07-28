@@ -82,13 +82,28 @@ exports.deleteUser = (req, res) => {
 
 //Login
 exports.login = (req, res) => {
+  console.log(req.body);
   Users.findOne({ email: req.body.email })
     .then((user) => {
-      bcrypt.compare(req.body.password, user.password).then((result) => {
-          return result ? res.status(200).json(user) : res.status(400).json({ message: "Le mot de passe ne corresponds pas" });
+      console.log(user);
+      bcrypt
+        .compare(req.body.password, user.password)
+        .then((result) => {
+          return result
+            ? res.status(200).send({ user, message: "Vous êtes connecter" })
+            : res
+                .status(401)
+                .send({ message: "Le mot de passe ne corresponds pas" });
         })
-    }).catch(() => {
-      return res.status(400).json({ message: "L'utilisateur n'existe pas" });
+        .catch((err) => {
+          res.send(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res
+        .status(400)
+        .send({ err, message: "L'utilisateur n'existe pas" });
     });
 };
 
