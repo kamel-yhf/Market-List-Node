@@ -11,6 +11,7 @@ exports.createUsers = (req, res) => {
     password: hash,
     phone: req.body.phone,
     address: req.body.address,
+    lists: req.body.lists,
   });
   user
     .save()
@@ -105,6 +106,28 @@ exports.login = (req, res) => {
         .status(400)
         .send({ err, message: "L'utilisateur n'existe pas" });
     });
+};
+
+exports.addListToUser = (req, res) => {
+  console.log(req.body);
+  Users.findById(req.params.id)
+    .then((user) => {
+      console.log(user.lists);
+      user.lists.push(req.body);
+      user.save();
+
+      res.status(200).send({ message: "Bravo", user: user });
+    })
+    .catch((err) => res.status(400).send(err));
+};
+
+exports.deleteListInUser = (req, res) => {
+ // console.log(req.body);
+  Users.findByIdAndDelete(req.params.id)
+    .then((user) => {
+      res.status(200).send({ message: "list dead", user: user });
+    })
+    .catch((err) => res.status(400).send(err));
 };
 
 function hashPassword(password) {
